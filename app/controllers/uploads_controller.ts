@@ -1,8 +1,8 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import app from '@adonisjs/core/services/app'
 import logger from '@adonisjs/core/services/logger'
-import { createWriteStream } from 'fs'
-import { pipeline } from 'stream/promises'
+import { createWriteStream } from 'node:fs'
+import { pipeline } from 'node:stream/promises'
 
 export default class UploadsController {
   async store({ request }: HttpContext) {
@@ -21,7 +21,7 @@ export default class UploadsController {
       await pipeline(part, createWriteStream(filePath))
       return { filePath }
     })
-    
+
     /**
      * Step 2: Process the stream
      */

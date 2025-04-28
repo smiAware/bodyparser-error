@@ -7,7 +7,7 @@
 |
 */
 
-import UploadsController from '#controllers/uploads_controller'
+const UploadsController = () => import('#controllers/uploads_controller')
 import router from '@adonisjs/core/services/router'
 
 router.get('/', async () => {
