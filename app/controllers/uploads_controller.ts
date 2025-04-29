@@ -9,6 +9,7 @@ export default class UploadsController {
     /**
      * Step 1: Define a file listener
      */
+
     request.multipart.onFile('*', {}, async (part, reporter) => {
       part.pause()
       part.on('data', reporter)
@@ -17,8 +18,10 @@ export default class UploadsController {
         logger.error(error)
       })
 
-      const filePath = app.makePath(part.file.clientName)
+      const filePath = app.makePath('uploads', part.file.clientName)
+
       await pipeline(part, createWriteStream(filePath))
+
       return { filePath }
     })
 
